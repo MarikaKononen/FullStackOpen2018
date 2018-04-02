@@ -1,0 +1,24 @@
+title Sekvenssikaavio spa muistiinpanot -sivusta
+
+kayttaja->selain:
+note left of selain
+kayttaja kirjoittaa osoitteeksi 
+https://fullstack-exampleapp.herokuapp.com/spa
+end note
+note left of palvelin
+selain tekee neljä HTTP-pyyntöä palvelimelle
+end note
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin->selain: status 200, sivun HTML-koodi
+selain->palvelin:  HTTP GET main.css
+palvelin->selain: status 200, sivun CSS-tyylit
+selain->palvelin:  HTTP GET main.js
+palvelin->selain: status 200, ladataan sivun javascript koodit
+selain->palvelin:  HTTP GET data.json
+palvelin->selain: status 200, palauttaa muistiinpanot JSON raakadatana 
+
+note left of selain
+Selain näyttää käyttäjälle HTML -sivun, joka on koristeltu CSS-tyyleillä ja
+jonka sisältö eli muistiinpanot on haettu palvelimelta JSON raakadatana 
+ja ne on parsittu Javascriptillä kasaan. 
+end note

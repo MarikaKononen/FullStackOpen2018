@@ -1,0 +1,38 @@
+title Sekvenssikaavio uusi muistiinpano 
+
+kayttaja->selain:
+note left of selain
+kayttaja kirjoittaa lomakkeelle muistiinpanon
+ja klikkaa tallenna painiketta
+end note
+note left of palvelin
+selain tekee viisi HTTP-pyyntöä palvelimelle
+end note
+selain->palvelin: HTTP POST pyyntö (lomakkeen ja sen tietojen lähetys) 
+palvelin->selain: status 302, redirect 
+note left of palvelin
+ensimmäinen on lomakkeen lähetystapahtuma ja palvelin vastaa 
+siihen uudelleenohjauspyynnöllä eli pyytää selaien tekemään 
+automaattisesti uuden HTTP GET -pyynnön osoitteeseen notes.
+end note
+selain->palvelin: HTTP GET fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, sivun HTML-koodi
+note left of palvelin
+Toinen on palvelimen pyytämä uusi HTTP GET -pyyntö
+Selain pyytää siis ensin HTML-sivun, sen jälkeen
+CSS-tyylit, JavaScript -koodin (main.js)
+Ja viimeiseksi itse muistiinpanot eli JSON raakadatan 
+end note
+selain->palvelin: HTTP GET main.css
+palvelin->selain: status 200, sivun CSS-tyylit
+selain->palvelin: HTTP GET main.js
+palvelin->selain: status 200, ladataan sivun javascript koodit
+selain->palvelin: GET data.json
+palvelin->selain: status 200, palauttaa muistiinpanot JSON raakadatana 
+
+note left of selain
+Selain näyttää käyttäjälle HTML -sivun, joka on koristeltu CSS-tyyleillä ja
+jonka sisältö eli muistiinpanot on haettu palvelimelta JSON raakadatana 
+ja ne on parsittu Javascriptillä kasaan. 
+Listassa on mukana käyttäjän lisäämä uusi muistiinpano. 
+end note

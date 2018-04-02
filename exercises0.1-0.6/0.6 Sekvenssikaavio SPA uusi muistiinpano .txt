@@ -1,0 +1,22 @@
+title Sekvenssikaavio SPA uusi muistiinpano 
+
+kayttaja->selain:
+note left of selain
+kayttaja kirjoittaa lomakkeelle muistiinpanon
+ja klikkaa tallenna painiketta
+end note
+note left of palvelin
+selain lähettää yhden HTTP-pyynnön palvelimelle
+end note
+selain->palvelin: HTTP POST pyyntö 
+palvelin->selain: status 201 created 
+
+note left of palvelin
+Pyyntö kohdistuu osoitteeseen https://fullstack-exampleapp.herokuapp.com/new_note_spa
+ja se sisältää JSON-muodossa olevan datan(muistiinpanon), jossa on sisältö
+ja aikaleima. Headerin content-type kertoo palvelimelle, että pyynnöön mukana tulee 
+JSON-muotoista dataa.
+end note
+note left of selain
+Käyttäjä näkee lisätyn uuden muistiinpanon selaimessa 
+end note
